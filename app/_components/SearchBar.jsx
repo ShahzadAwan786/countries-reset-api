@@ -2,12 +2,12 @@ import React from 'react'
 
 const SearchBar = ({ setsearchCountry }) => {
     return (
-        <div className='flex justify-center mt-10 w-full '>
-            <input
+        <div className='md:px-13 px-6 mt-6 w-full '>
+            <input 
                 type="text"
                 placeholder="Search Country..."
-                className="border-2 border-black md:w-[220px] w-200px focus:w-[270px] 
-             transition-all duration-300 ease-in-out p-1 md:p-2 rounded-lg
+                className="border-2 border-gray-300 md:w-[400px] w-[350px] focus:w-[430px] 
+             transition-all duration-300 ease-in-out  p-1 rounded-lg
              outline-none focus:ring-2 focus:ring-green-400"
                 onChange={(e) => setsearchCountry(e.target.value)}
             />

@@ -1,19 +1,33 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 export default function CountryDetailPage() {
   const { name } = useParams();
+  const route = useRouter();
   const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [borderCountries, setBorderCountries]= useState([])
+
 
   useEffect(() => {
     const fetchCountry = async () => {
       try {
         const response = await fetch(`https://restcountries.com/v3.1/name/${name}?fullText=true`);
         const data = await response.json();
-        setCountry(data[0]);
+        const countryData = data [0];
+        setCountry(countryData);
+
+        if(countryData.borders && countryData.borders.length > 0) {
+          const borderResponses = await fetch(`https://restcountries.com/v3.1/alpha?codes=${countryData.borders.join(',')}`)
+          const borderData = await  borderResponses.json();
+          setBorderCountries(borderData);
+        }
+        else {
+          setBorderCountries([]);
+        }
+      
       } catch (error) {
         console.error('Error fetching country detail:', error);
       } finally {
@@ -58,14 +72,16 @@ export default function CountryDetailPage() {
               <p><strong>Languages:</strong> {country.languages ? Object.values(country.languages).join(', ') : 'N/A'}</p>
             </div>
 
-            {country.borders && (
+            {borderCountries.length>0 && (
               <div className="mt-4">
                 <p className="font-semibold mb-2">Border Countries:</p>
                 <div className="flex flex-wrap gap-2">
-                  {country.borders.map((code, index) => (
-                    <span key={index} className="bg-gray-200 dark:bg-gray-700 dark:text-white px-4 py-1 rounded shadow">
-                      {code}
-                    </span>
+                  {borderCountries.map((borderCountry ) => (
+                    <button key={borderCountry.cca3}
+                    onClick={() => route.push(`/country/${borderCountry.name.common}`)}
+                     className="bg-gray-200 dark:bg-gray-700 dark:text-white px-4 py-1 rounded shadow cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                    {borderCountry.name.common}
+                    </button>
                   ))}
                 </div>
               </div>

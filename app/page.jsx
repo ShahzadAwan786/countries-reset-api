@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from "react";
 import SearchBar from "./_components/SearchBar";
 import CountryList from "./_components/CountrylList";
+import { FilterCountry } from "./_components/FilterCountry";
+import Header from "./_components/Header";
 
 
 const API_URL = "https://restcountries.com/v3.1/all?fields=name,capital,region,population,flags";
@@ -32,7 +34,11 @@ export default function Home() {
 
   return (
     <div className="">
+      <Header/>
+      <div className="md:flex justify-between">
       <SearchBar setsearchCountry={setsearchCountry} />
+      <FilterCountry/>
+      </div>
       < CountryList countries={filterCountries} />
       
     </div>
