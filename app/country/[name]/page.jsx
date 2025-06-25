@@ -24,34 +24,54 @@ export default function CountryDetailPage() {
     fetchCountry();
   }, [name]);
 
-  if (loading) return <div className="p-6 text-center">Loading country details...</div>;
-  if (!country) return <div className="p-6 text-center">Country not found.</div>;
+  if (loading) return <div className="p-6 text-center dark:text-white">Loading country details...</div>;
+  if (!country) return <div className="p-6 text-center dark:text-white">Country not found.</div>;
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-8 bg-gray-50">
-      <div className="w-full max-w-3xl bg-amber-100 p-6 md:p-10 rounded-2xl shadow-lg text-center">
-        <img
-          src={country.flags.png}
-          alt={country.name.common}
-          className="w-[200px] sm:w-[250px] mx-auto mb-6 rounded-lg shadow"
-        />
-        <h1 className="text-2xl sm:text-3xl font-bold mb-4">{country.name.common}</h1>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4  text-base sm:text-lg">
-          <p><strong>Capital:</strong> {country.capital?.[0]}</p>
-          <p><strong>Region:</strong> {country.region}</p>
-          <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
-          <p><strong>Subregion:</strong> {country.subregion}</p>
-          <p><strong>Area:</strong> {country.area.toLocaleString()} km²</p>
-          <p><strong>Timezone:</strong> {country.timezones?.[0]}</p>
-        </div>
-
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white px-4 py-12">
+      <div className="max-w-6xl mx-auto">
         <button
           onClick={() => window.history.back()}
-          className="mt-8 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+          className="mb-8 px-6 py-2 bg-gray-200 dark:bg-gray-700 dark:text-white rounded shadow hover:bg-gray-300 dark:hover:bg-gray-600 transition"
         >
-          Back
+          ← Back
         </button>
+
+        <div className="flex flex-col lg:flex-row gap-16 items-start">
+          <img
+            src={country.flags.png}
+            alt={country.name.common}
+            className="w-full max-w-[500px] rounded shadow-lg"
+          />
+
+          <div className="flex-1">
+            <h1 className="text-3xl font-bold mb-6">{country.name.common}</h1>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+              <p><strong>Native Name:</strong> {Object.values(country.name.nativeName || {})[0]?.common}</p>
+              <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
+              <p><strong>Region:</strong> {country.region}</p>
+              <p><strong>Sub Region:</strong> {country.subregion}</p>
+              <p><strong>Capital:</strong> {country.capital?.[0]}</p>
+              <p><strong>Top Level Domain:</strong> {country.tld?.[0]}</p>
+              <p><strong>Currencies:</strong> {country.currencies ? Object.values(country.currencies).map((cur) => cur.name).join(', ') : 'N/A'}</p>
+              <p><strong>Languages:</strong> {country.languages ? Object.values(country.languages).join(', ') : 'N/A'}</p>
+            </div>
+
+            {country.borders && (
+              <div className="mt-4">
+                <p className="font-semibold mb-2">Border Countries:</p>
+                <div className="flex flex-wrap gap-2">
+                  {country.borders.map((code, index) => (
+                    <span key={index} className="bg-gray-200 dark:bg-gray-700 dark:text-white px-4 py-1 rounded shadow">
+                      {code}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
