@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import ShimmerPage from './ShimmerPage';
 
 export default function CountryDetailPage() {
   const { name } = useParams();
@@ -38,7 +39,7 @@ export default function CountryDetailPage() {
     fetchCountry();
   }, [name]);
 
-  if (loading) return <div className="p-6 text-center dark:text-white">Loading country details...</div>;
+  if (loading) return <ShimmerPage />;
   if (!country) return <div className="p-6 text-center dark:text-white">Country not found.</div>;
 
   return (

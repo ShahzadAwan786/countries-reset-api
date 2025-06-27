@@ -1,19 +1,36 @@
 import React from 'react'
 
-export const FilterCountry = () => {
- 
-  return (
-    <div className='flex md:justify-end items-center my-4 px-6'> 
-        <select name="region" id="region"
-        className='border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-500'>
-            <option value="">Filter by Region</option>
-            <option value="Africa">Africa</option>
-            <option value="Americas">Americas</option>
-            <option value="Asia">Asia</option>
-            <option value="Europe">Europe</option>
-            <option value="Oceania">Oceania</option>
-        </select>
+export const FilterCountry = ({onSelect}) => {
+    const continents = [
+        { id: 1, name: 'Africa' },
 
-    </div>
-  )
+        { id: 3, name: 'Asia' },
+        { id: 4, name: 'Europe' },
+        { id: 5, name: 'North America' },
+        { id: 7, name: 'South America' },
+        { id: 6, name: 'Oceania' },
+    ]
+
+    const selectHandle = (e) => {
+        const regionName = e.target.value
+        onSelect(regionName)
+    }
+
+    return (
+        <div className='flex md:justify-end items-center my-4 px-6'>
+            <select onChange={selectHandle}
+            className='border-2 border-gray-300 rounded-sm p-1'>
+                <option value="all">Filter by Region</option>
+                {
+                    continents.map((continent)=>{
+                        return (
+                            <option value={continent.name} key={continent.id} >
+                                {continent.name}
+                            </option>
+                        )
+                    })
+                }
+            </select>
+        </div>
+    )
 }

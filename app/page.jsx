@@ -32,15 +32,29 @@ export default function Home() {
     country.name?.common?.toLowerCase().includes(searchcountry.toLowerCase())
   );
 
+ const getCountryByRegion = async (regionName) => {
+    try {
+      if( regionName === "all") return fetchCountries();
+      const response = await fetch(`${"https://restcountries.com/v3.1"}/region/${regionName}`);
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      const data = await response.json();
+      setCountries(data);
+    } catch (error) {
+      console.error("Failed to filter countries by region:", error);
+    }
+  }
+
+
   return (
     <div className="">
       <Header/>
       <div className="md:flex justify-between">
       <SearchBar setsearchCountry={setsearchCountry} />
-      <FilterCountry/>
+      <FilterCountry onSelect={getCountryByRegion} />
       </div>
       < CountryList countries={filterCountries} />
       
     </div>
   ); 
 }
+ 
