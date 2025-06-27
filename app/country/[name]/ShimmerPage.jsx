@@ -12,18 +12,36 @@ const ShimmerPage = () => {
           <div className="flex-1 ">
             <div className="h-8 w-25 bg-gray-300 rounded mb-6 animate-pulse"></div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 ">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="flex gap-4 items-center mb-6">
-                  <div className="w-36 h-6 bg-gray-300 rounded animate-pulse"></div>
-                  
-                </div>
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <strong className='flex lg:flex-row '>Native Name:
+             <p className="w-16 h-6 bg-gray-300 rounded animate-pulse mx-2"></p>
+             </strong>
+                <strong className='flex lg:flex-row '>Population:
+             <p className="w-16 h-6 bg-gray-300 rounded animate-pulse mx-2"></p>
+             </strong>
+                <strong className='flex lg:flex-row '>Region:
+             <p className="w-16 h-6 bg-gray-300 rounded animate-pulse mx-2"></p>
+             </strong>
+                <strong className='flex lg:flex-row '>Sub Region:
+             <p className="w-16 h-6 bg-gray-300 rounded animate-pulse mx-2"></p>
+             </strong>
+                <strong className='flex lg:flex-row '>Capital:
+             <p className="w-16 h-6 bg-gray-300 rounded animate-pulse mx-2"></p>
+             </strong>
+                <strong className='flex lg:flex-row '>Top Level Domain:
+             <p className="w-16 h-6 bg-gray-300 rounded animate-pulse mx-2"></p>
+             </strong>
+                <strong className='flex lg:flex-row '>Currencies:
+             <p className="w-16 h-6 bg-gray-300 rounded animate-pulse mx-2"></p>
+             </strong>
+                <strong className='flex lg:flex-row '>Languages:
+             <p className="w-16 h-6 bg-gray-300 rounded animate-pulse mx-2"></p>
+             </strong>
             </div>
 
       
               <div className="mt-2">
-                <p className="h-5 w-32 mb-2 bg-gray-200"></p>
+                <p className="font-semibold mb-2">Border Countries:</p>
                 <div className="flex flex-wrap gap-2">
                 
                {Array.from({length:3}).map((_, i) => (
