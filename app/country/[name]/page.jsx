@@ -43,7 +43,7 @@ export default function CountryDetailPage() {
   if (!country) return <div className="p-6 text-center dark:text-white">Country not found.</div>;
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white px-4 py-12">
+    <div className="min-h-screen bg-white dark:bg-gray-600 text-black dark:text-white px-4 py-12">
       <div className="max-w-6xl mx-auto">
         <button
           onClick={() => window.history.back()}

@@ -4,7 +4,7 @@ import Link from 'next/link';
 export const CountriesCard = ({ country }) => {
   return (
     <Link href={`/country/${encodeURIComponent(country.name.common)}`}>
-    <div className="  w-80 h-93 shadow-lg md:w-68 md:h-90">
+    <div className="  w-80 h-93 shadow-lg md:w-68 md:h-90 dark:bg-gray-600 dark:text-white">
      <img
   src={country.flags?.png||'/download.png'} 
   alt={country.name?.common}

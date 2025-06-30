@@ -19,7 +19,7 @@ export const FilterCountry = ({onSelect}) => {
     return (
         <div className='flex md:justify-end items-center my-4 px-6'>
             <select onChange={selectHandle}
-            className='border-2 border-gray-300 rounded-sm p-1'>
+            className='border-2 border-gray-300 dark:border-none rounded-sm p-2 dark:bg-gray-800 dark:text-white'>
                 <option value="all">Filter by Region</option>
                 {
                     continents.map((continent)=>{

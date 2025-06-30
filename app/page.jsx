@@ -46,7 +46,7 @@ export default function Home() {
 
 
   return (
-    <div className="">
+    <div className="dark:bg-gray-700 dark:text-white">
       <Header/>
       <div className="md:flex justify-between">
       <SearchBar setsearchCountry={setsearchCountry} />
